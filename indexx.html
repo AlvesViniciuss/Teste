@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Nomes</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cadastro de Nomes</h1>
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" placeholder="Digite o nome">
+    <button onclick="adicionarNome()">Cadastrar</button>
+
+    <h2>Lista de Nomes</h2>
+    <table id="tabelaNomes">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os nomes cadastrados aparecerão aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        let contador = 1;  // Contador para numerar as linhas
+
+        function adicionarNome() {
+            const nome = document.getElementById('nome').value;  // Pega o nome digitado
+
+            if (nome === '') {
+                alert('Por favor, insira um nome.');
+                return;
+            }
+
+            // Cria uma nova linha na tabela
+            const tabela = document.getElementById('tabelaNomes').getElementsByTagName('tbody')[0];
+            const novaLinha = tabela.insertRow();
+
+            // Cria e adiciona as células da nova linha
+            const celulaId = novaLinha.insertCell(0);
+            const celulaNome = novaLinha.insertCell(1);
+
+            // Preenche as células com os dados
+            celulaId.textContent = contador++;
+            celulaNome.textContent = nome;
+
+            // Limpa o campo de entrada para novo nome
+            document.getElementById('nome').value = '';
+        }
+    </script>
+
+</body>
+</html>
